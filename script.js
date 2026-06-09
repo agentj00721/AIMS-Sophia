@@ -141,12 +141,14 @@
   // ============================================================
   //  Volume pricing calculator — Option 5 (banded tiers)
   // ============================================================
+  // X Upgrade volume pricing — per member, per MONTH (billed annually).
+  // (These are the annual $30/$25/$22/$18/$15 tiers expressed monthly.)
   const TIERS = [
-    { name: 'Tier 1', cap: 10000,  rate: 30, color: '#fb9b35' },
-    { name: 'Tier 2', cap: 50000,  rate: 25, color: '#f1517b' },
-    { name: 'Tier 3', cap: 100000, rate: 22, color: '#b43082' },
-    { name: 'Tier 4', cap: 200000, rate: 18, color: '#8431cb' },
-    { name: 'Tier 5', cap: 300000, rate: 15, color: '#35c5fc' }
+    { name: 'Tier 1', cap: 10000,  rate: 2.5,        color: '#fb9b35' },
+    { name: 'Tier 2', cap: 50000,  rate: 25 / 12,    color: '#f1517b' },
+    { name: 'Tier 3', cap: 100000, rate: 22 / 12,    color: '#b43082' },
+    { name: 'Tier 4', cap: 200000, rate: 1.5,        color: '#8431cb' },
+    { name: 'Tier 5', cap: 300000, rate: 1.25,       color: '#35c5fc' }
   ];
 
   const slider = document.getElementById('memberSlider');
@@ -175,7 +177,7 @@
       const n = +slider.value;
       const { total, segments } = compute(n);
       memberCount.textContent = n.toLocaleString('en-US');
-      annualTotal.textContent = '$' + total.toLocaleString('en-US');
+      annualTotal.textContent = '$' + Math.round(total).toLocaleString('en-US');
       blendedRate.textContent = '$' + (n ? (total / n) : 0).toFixed(2);
 
       // Proportional colour bar — pure colour blocks, so no label can ever
@@ -189,14 +191,14 @@
         div.className = 'band';
         div.style.background = s.color;
         div.style.flexBasis = (s.members / MAX * 100) + '%';
-        div.title = s.name + ' · ' + s.members.toLocaleString('en-US') + ' members @ $' + s.rate;
+        div.title = s.name + ' · ' + s.members.toLocaleString('en-US') + ' members @ $' + s.rate.toFixed(2) + '/mo';
         bandsEl.appendChild(div);
         if (legendEl) {
           const chip = document.createElement('div');
           chip.className = 'legend-chip';
           chip.innerHTML = '<i style="background:' + s.color + '"></i>' +
-            '<b>' + s.members.toLocaleString('en-US') + '</b> &times; $' + s.rate +
-            ' <em>= $' + (s.members * s.rate).toLocaleString('en-US') + '</em>';
+            '<b>' + s.members.toLocaleString('en-US') + '</b> &times; $' + s.rate.toFixed(2) +
+            ' <em>= $' + Math.round(s.members * s.rate).toLocaleString('en-US') + '/mo</em>';
           legendEl.appendChild(chip);
         }
       });
@@ -283,31 +285,40 @@
       const { jsPDF } = window.jspdf;
       document.body.classList.add('exporting');
       closeRail();
+      // Uniform 16:9 slide pages — each chapter is scaled to FIT (contain)
+      // and centred, with the letterbox filled to match the chapter edge so
+      // it reads as full-bleed. No clipping, consistent page size throughout.
+      const PW = 1600, CONT = 900, FT = 58, PH = CONT + FT;
       let pdf = null;
       for (let i = 0; i < chapters.length; i++) {
         if (pdfProgress) pdfProgress.textContent = 'Rendering page ' + (i + 1) + ' of ' + chapters.length;
         const ch = chapters[i];
+        const isDark = ch.matches('.dark, .cover, .contact');
         ch.classList.add('pdf-cap');
         await settle();
         const canvas = await window.html2canvas(ch, {
-          scale: 2, backgroundColor: '#0a0a12', useCORS: true, logging: false,
-          windowWidth: 1180, scrollX: 0, scrollY: 0
+          scale: 2, backgroundColor: isDark ? '#0a0a14' : '#eef0f5',
+          useCORS: true, logging: false, windowWidth: 1180, scrollX: 0, scrollY: 0
         });
         ch.classList.remove('pdf-cap');
         const iw = canvas.width, ih = canvas.height;
-        const ft = Math.round(iw * 0.045);          // footer band height
-        const pageW = iw, pageH = ih + ft;
-        const orient = pageW >= pageH ? 'landscape' : 'portrait';
-        if (!pdf) pdf = new jsPDF({ orientation: orient, unit: 'px', format: [pageW, pageH], compress: true });
-        else pdf.addPage([pageW, pageH], orient);
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, iw, ih);
-        pdf.setFillColor(10, 10, 18);
-        pdf.rect(0, ih, pageW, ft, 'F');
-        pdf.setTextColor(196, 196, 224);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setFontSize(Math.round(ft * 0.34));
-        pdf.text('AIMS Gulf   ×   Wellx  —  Partnership Proposal', ft * 0.7, ih + ft * 0.63);
-        pdf.text('Page ' + (i + 1) + ' / ' + chapters.length, pageW - ft * 0.7, ih + ft * 0.63, { align: 'right' });
+        const px = canvas.getContext('2d').getImageData(0, 0, 1, 1).data; // edge colour
+        const scale = Math.min(PW / iw, CONT / ih);
+        const dw = iw * scale, dh = ih * scale;
+        const dx = (PW - dw) / 2, dy = (CONT - dh) / 2;
+        if (!pdf) pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [PW, PH], compress: true });
+        else pdf.addPage([PW, PH], 'landscape');
+        pdf.setFillColor(px[0], px[1], px[2]);
+        pdf.rect(0, 0, PW, CONT, 'F');                 // seamless letterbox
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.94), 'JPEG', dx, dy, dw, dh);
+        pdf.setFillColor(10, 10, 20);
+        pdf.rect(0, CONT, PW, FT, 'F');                // footer band
+        pdf.setDrawColor(132, 49, 203); pdf.setLineWidth(2);
+        pdf.line(0, CONT, PW, CONT);
+        pdf.setTextColor(200, 200, 226);
+        pdf.setFont('helvetica', 'normal'); pdf.setFontSize(15);
+        pdf.text('AIMS Gulf   ×   Wellx  —  Partnership Proposal', 30, CONT + FT / 2 + 5);
+        pdf.text('Page ' + (i + 1) + ' / ' + chapters.length, PW - 30, CONT + FT / 2 + 5, { align: 'right' });
       }
       document.body.classList.remove('exporting');
       if (pdfProgress) pdfProgress.textContent = 'Saving…';

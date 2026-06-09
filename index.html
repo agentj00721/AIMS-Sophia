@@ -30,6 +30,7 @@
   <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.2c0 4.7-3.2 7.9-7.5 9.3-4.3-1.4-7.5-4.6-7.5-9.3V6z"/><path d="M9 12l2 2 4-4.2"/></symbol>
   <symbol id="ic-renew" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"/><polyline points="20.5 4 20.5 9 15.5 9"/></symbol>
   <symbol id="ic-trend" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></symbol>
+  <symbol id="ic-layers" viewBox="0 0 24 24"><polygon points="12 3 21 8 12 13 3 8"/><polyline points="3 13 12 18 21 13"/></symbol>
   <symbol id="ic-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="15"/><polyline points="7 10 12 15 17 10"/><path d="M5 20h14"/></symbol>
 </svg>
 
@@ -38,8 +39,9 @@
 
 <!-- Top bar -->
 <header class="topbar">
-  <a class="brand" href="#cover" data-nav>
-    <img src="assets/img/wellx-logo.png" alt="Wellx" class="brand-logo" />
+  <a class="brand" href="#cover" data-nav aria-label="Wellx — go to cover">
+    <img src="assets/img/wellx-logo.png" alt="Wellx" class="brand-logo brand-wellx-white" />
+    <img src="assets/img/wellx-dark.png" alt="Wellx" class="brand-logo brand-wellx-dark" />
   </a>
   <div class="topbar-right">
     <button class="pdf-btn" id="pdfBtn" aria-label="Download proposal as PDF">
@@ -48,7 +50,7 @@
     </button>
     <div class="topbar-meta">
       <span class="topbar-x">×</span>
-      <img src="assets/img/aims-gulf-logo.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-color" />
+      <img src="assets/img/aims-navy.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-navy" />
       <img src="assets/img/aims-gulf-white.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-white" />
     </div>
   </div>
@@ -64,20 +66,21 @@
     <span class="rail-title">For AIMS Gulf</span>
   </div>
   <ol class="rail-list" id="railList">
-    <li><a href="#cover"      data-nav><i>00</i><span>Cover</span></a></li>
-    <li><a href="#who"        data-nav><i>01</i><span>Who We Are</span></a></li>
-    <li><a href="#trusted"    data-nav><i>02</i><span>Trusted By</span></a></li>
-    <li><a href="#context"    data-nav><i>03</i><span>The Challenge</span></a></li>
-    <li><a href="#solution"   data-nav><i>04</i><span>The Solution</span></a></li>
-    <li><a href="#platform"   data-nav><i>05</i><span>The Platform</span></a></li>
-    <li><a href="#hr"         data-nav><i>06</i><span>Value for Clients</span></a></li>
-    <li><a href="#whyaims"    data-nav><i>07</i><span>Why AIMS Wins</span></a></li>
-    <li><a href="#portfolio"  data-nav><i>08</i><span>Portfolio &amp; Scale</span></a></li>
-    <li><a href="#commercial" data-nav><i>09</i><span>Commercial Value</span></a></li>
-    <li><a href="#next"       data-nav><i>10</i><span>Next Steps</span></a></li>
-    <li><a href="#contact"    data-nav><i>11</i><span>Contact</span></a></li>
+    <li><a href="#cover"    data-nav><i>00</i><span>Cover</span></a></li>
+    <li><a href="#who"      data-nav><i>01</i><span>Who We Are</span></a></li>
+    <li><a href="#trusted"  data-nav><i>02</i><span>Trusted By</span></a></li>
+    <li><a href="#context"  data-nav><i>03</i><span>The Challenge</span></a></li>
+    <li><a href="#solution" data-nav><i>04</i><span>The Solution</span></a></li>
+    <li><a href="#platform" data-nav><i>05</i><span>The Platform</span></a></li>
+    <li><a href="#hr"       data-nav><i>06</i><span>Value for Clients</span></a></li>
+    <li><a href="#whyaims"  data-nav><i>07</i><span>Why AIMS Wins</span></a></li>
+    <li><a href="#option1"  data-nav><i>08</i><span>Option 1 · Client by Client</span></a></li>
+    <li><a href="#option2"  data-nav><i>09</i><span>Option 2 · Enterprise</span></a></li>
+    <li><a href="#addons"   data-nav><i>10</i><span>Add-ons</span></a></li>
+    <li><a href="#next"     data-nav><i>11</i><span>Next Steps</span></a></li>
+    <li><a href="#contact"  data-nav><i>12</i><span>Contact</span></a></li>
   </ol>
-  <div class="rail-foot">wellx.global</div>
+  <a class="rail-foot" href="https://wellx.global" target="_blank" rel="noopener">wellx.global ↗</a>
 </nav>
 <div class="rail-scrim" id="railScrim"></div>
 
@@ -321,148 +324,91 @@
     </div>
   </section>
 
-  <!-- 08 — PORTFOLIO & SCALE -->
-  <section class="chapter dark" id="portfolio" data-index="8">
+  <!-- 08 — OPTION 1 · CLIENT BY CLIENT -->
+  <section class="chapter light" id="option1" data-index="8">
     <div class="chapter-head">
-      <span class="kicker light">Portfolio Value</span>
-      <h2 class="section-title light">Scale and brand ownership</h2>
-      <p class="lede light">For brokers ready to put their own brand on the platform and roll it across the book.</p>
+      <span class="kicker">Option 1 · Commercial Value</span>
+      <h2 class="section-title">Client by client</h2>
+      <p class="lede">Priced per member, per month — deploy Wellx for any single client. Two ways to structure third-party services.</p>
     </div>
 
-    <!-- Linear upgrade progression — fully visible, no clicks -->
-    <div class="layers">
-
-      <!-- Layer 1 -->
-      <article class="layer reveal">
-        <div class="layer-step"><span class="layer-no">01</span></div>
-        <div class="layer-main">
-          <span class="layer-tag">Core Platform</span>
-          <h3>Wellx Light</h3>
-          <p class="layer-desc">The core wellbeing platform and data-capture engine you deploy across the book.</p>
-          <ul class="layer-feats">
-            <li>Device Connection</li><li>Health Dashboard</li><li>Health Evaluation</li>
-            <li>Personal Goals</li><li>Education Hub</li><li>Mood Logging</li>
-            <li>Guided Breathwork</li><li>Discount Rewards</li><li>Insurance Section</li><li>HR Dashboard</li>
-          </ul>
-          <p class="layer-outcome"><span>Outcome</span> Every client live on one branded platform — and a stream of engagement data you own.</p>
-        </div>
-        <div class="layer-price">
-          <div class="layer-amount">$100,000<span>/ year</span></div>
-          <p>Up to <strong>1 million licenses</strong></p>
-          <p class="layer-min">Minimum 1-year subscription</p>
-        </div>
+    <div class="price-cards two">
+      <article class="price-card featured reveal">
+        <span class="ribbon">Everything included</span>
+        <span class="opt">Wellx All-in</span>
+        <h3>One simple price<small>All features and all third-party services bundled</small></h3>
+        <div class="price"><sup>$</sup>4<span>/ member / month</span></div>
+        <ul class="dash">
+          <li>The full Wellx experience</li>
+          <li>Cash Rewards, Telemedicine, Care Concierge &amp; Counselling — all included</li>
+          <li>No usage surprises — one predictable cost</li>
+        </ul>
       </article>
-
-      <div class="layer-link"><svg class="ico"><use href="#ic-trend"/></svg><span>Upgrade path — switch on engagement</span></div>
-
-      <!-- Layer 2 -->
-      <article class="layer reveal">
-        <div class="layer-step"><span class="layer-no">02</span></div>
-        <div class="layer-main">
-          <span class="layer-tag">Advanced Engagement Layer</span>
-          <h3>Wellx X Upgrade</h3>
-          <p class="layer-desc">Switch on the high-engagement and clinical features at any renewal — no re-platforming.</p>
-          <ul class="layer-feats">
-            <li>Everything in Wellx Light</li><li>AI Facial Scan</li><li>Care Concierge</li>
-            <li>Telemedicine</li><li>Social Challenges</li><li>Mental Health Sessions (unlimited)</li>
-            <li>Dedicated Account Manager</li><li>Cash Rewards</li>
-          </ul>
-          <p class="layer-outcome"><span>Outcome</span> Deeper daily engagement and clinical value that makes switching brokers unthinkable.</p>
-        </div>
-        <div class="layer-price">
-          <div class="layer-amount">$30<span>/ member / year</span></div>
-          <p>Activates at any renewal cycle</p>
-          <p class="layer-min">1-year subscription</p>
-        </div>
+      <article class="price-card reveal" data-d="1">
+        <span class="opt">Wellx with Pass-through</span>
+        <h3>Lower platform fee<small>Third-party services billed through at cost</small></h3>
+        <div class="price"><sup>$</sup>2<span>/ member / month</span></div>
+        <ul class="dash">
+          <li>The full Wellx platform &amp; engagement layer</li>
+          <li>Cash Rewards, Telemedicine, Care Concierge &amp; Counselling passed through <strong>at cost</strong></li>
+          <li>Pay only for the third-party services your members use</li>
+        </ul>
       </article>
-
-      <div class="layer-link"><svg class="ico"><use href="#ic-shield"/></svg><span>Upgrade path — own the platform</span></div>
-
-      <!-- Layer 3 -->
-      <article class="layer layer-own reveal">
-        <div class="layer-step"><span class="layer-no">03</span></div>
-        <div class="layer-main">
-          <span class="layer-tag">Full Brand Ownership</span>
-          <h3>Broker White-label Platform</h3>
-          <p class="layer-desc">Put your own brand on the platform and run your entire book from one place.</p>
-          <div class="own-grid">
-            <div class="own-item">
-              <h4>Broker White-label App</h4>
-              <div class="own-price">$50,000 <span>one-time</span></div>
-              <p>Full branded app under your identity — your whole book, unified, with portfolio-wide analytics.</p>
-            </div>
-            <div class="own-item">
-              <h4>Client Sub-White-label</h4>
-              <div class="own-price">$3,000 <span>one-time / client</span></div>
-              <p>Each employer gets their own branded experience — passed on or absorbed to deepen stickiness.</p>
-            </div>
-            <div class="own-item">
-              <h4>Ring-Fenced Cloud</h4>
-              <div class="own-price">$100,000 <span>/ year</span></div>
-              <p>Dedicated, isolated infrastructure with data sovereignty and enterprise-grade SLAs.</p>
-            </div>
-          </div>
-          <p class="layer-outcome"><span>Outcome</span> The platform becomes yours — your brand, your data, your client relationships, locked in.</p>
-        </div>
-      </article>
-
     </div>
+
+    <p class="foot-note">
+      <span>Billed annually.</span>
+      Reselling to your clients? A maximum <strong>40% margin loading</strong> on top of these rates is permitted — higher loadings require Wellx approval.
+    </p>
   </section>
 
-  <!-- 09 — COMMERCIAL VALUE -->
-  <section class="chapter light" id="commercial" data-index="9">
+  <!-- 09 — OPTION 2 · ENTERPRISE -->
+  <section class="chapter dark" id="option2" data-index="9">
     <div class="chapter-head">
-      <span class="kicker">Commercial Value</span>
-      <h2 class="section-title">Choose how you take Wellx to market</h2>
-      <p class="lede">Three ways to bring Wellx to your clients — priced per member, per year.</p>
+      <span class="kicker light">Option 2 · Commercial Value</span>
+      <h2 class="section-title light">Enterprise</h2>
+      <p class="lede light">A portfolio-wide platform fee for Wellx Lite, with the engagement layer added per member — volume discounts apply.</p>
     </div>
 
-    <div class="price-cards">
-      <article class="price-card reveal">
-        <span class="opt">Option 1</span>
-        <h3>Standard SaaS<small>Wellx experience · excl. Cash Rewards</small></h3>
-        <div class="price"><sup>$</sup>15<span>/ member / year</span></div>
-        <ul class="dash">
-          <li>Access to all Wellx features</li>
-          <li>Excludes cash rewards</li>
-          <li>Intelligence dashboard included</li>
+    <div class="ent-grid">
+      <article class="ent-card reveal">
+        <span class="ent-tag">Core platform</span>
+        <h3>Wellx Lite</h3>
+        <div class="ent-price">$15,000<span>/ month</span></div>
+        <p class="ent-sub">Up to <strong>1 million licenses</strong> · billed annually</p>
+        <ul class="dash light">
+          <li>Core wellbeing platform &amp; data capture</li>
+          <li>Device connection, health dashboard &amp; evaluation</li>
+          <li>Education hub, mood logging, guided breathwork</li>
+          <li>HR dashboard &amp; insurance section</li>
         </ul>
       </article>
-      <article class="price-card featured reveal" data-d="1">
-        <span class="ribbon">Full experience</span>
-        <span class="opt">Option 2</span>
-        <h3>Standard SaaS<small>The full Wellx experience</small></h3>
-        <div class="price"><sup>$</sup>30<span>/ member / year</span></div>
-        <ul class="dash">
-          <li>Full access to all Wellx features</li>
-          <li>Intelligence dashboard included</li>
-          <li>Dedicated account manager</li>
-        </ul>
-      </article>
-      <article class="price-card reveal" data-d="2">
-        <span class="opt">Option 3</span>
-        <h3>Reseller<small>Own the client relationship</small></h3>
-        <div class="price"><sup>$</sup>50<span>/ member / year</span></div>
-        <ul class="dash">
-          <li>Resell Wellx directly to your clients</li>
-          <li>No platform setup required</li>
-          <li>Margin built into your resale price</li>
+      <article class="ent-card reveal" data-d="1">
+        <span class="ent-tag">Engagement layer</span>
+        <h3>X Upgrade</h3>
+        <div class="ent-price">from $2.50<span>/ member / month</span></div>
+        <p class="ent-sub">Volume discounts apply · billed annually</p>
+        <ul class="dash light">
+          <li>AI Facial Scan, Care Concierge &amp; Telemedicine</li>
+          <li>Social Challenges &amp; unlimited Mental Health Sessions</li>
+          <li>Cash Rewards &amp; dedicated account manager</li>
+          <li>Activates at any renewal cycle</li>
         </ul>
       </article>
     </div>
 
-    <!-- Interactive volume calculator -->
+    <!-- Interactive X Upgrade volume calculator -->
     <div class="calc reveal">
       <div class="calc-head">
         <div>
-          <span class="opt dark-opt">Option 5</span>
-          <h3>Volume-based tier on the full Wellx experience</h3>
+          <span class="opt dark-opt">X Upgrade · Volume Pricing</span>
+          <h3>The more members you bring, the lower the rate</h3>
           <p class="calc-note">Banded pricing — each rate applies only to the members within that band. Drag to model your portfolio.</p>
         </div>
         <div class="calc-output">
           <span class="calc-members"><b id="memberCount">70,000</b> members</span>
-          <span class="calc-total">≈ <b id="annualTotal">$0</b><i>/ year</i></span>
-          <span class="calc-blended">Blended <b id="blendedRate">$0</b> / member</span>
+          <span class="calc-total">≈ <b id="annualTotal">$0</b><i>/ month</i></span>
+          <span class="calc-blended">Blended <b id="blendedRate">$0</b> / member / mo · billed annually</span>
         </div>
       </div>
       <div class="calc-body">
@@ -470,24 +416,71 @@
           <input type="range" id="memberSlider" min="1000" max="300000" step="1000" value="70000" aria-label="Number of members" />
           <div class="calc-bands" id="calcBands"></div>
           <div class="calc-legend" id="calcLegend"></div>
-          <p class="calc-hint">Each colour is a pricing band. Drag the slider to see how the blended rate falls as volume grows.</p>
+          <p class="calc-hint">Each colour is a pricing band. Drag the slider to see how the blended monthly rate falls as volume grows.</p>
         </div>
         <table class="tier-table">
-          <thead><tr><th>Tier</th><th>Purchased licenses</th><th>USD / yr</th></tr></thead>
+          <thead><tr><th>Tier</th><th>Purchased licenses</th><th>$ / member / mo</th></tr></thead>
           <tbody>
-            <tr><td>Tier 1</td><td>First 10,000</td><td>$30</td></tr>
-            <tr><td>Tier 2</td><td>Next 40,000 (10,001 – 50,000)</td><td>$25</td></tr>
-            <tr><td>Tier 3</td><td>Next 50,000 (50,001 – 100,000)</td><td>$22</td></tr>
-            <tr><td>Tier 4</td><td>Next 100,000 (100,001 – 200,000)</td><td>$18</td></tr>
-            <tr><td>Tier 5</td><td>Next 100,000 (200,001 – 300,000)</td><td>$15</td></tr>
+            <tr><td>Tier 1</td><td>First 10,000</td><td>$2.50</td></tr>
+            <tr><td>Tier 2</td><td>Next 40,000 (10,001 – 50,000)</td><td>$2.08</td></tr>
+            <tr><td>Tier 3</td><td>Next 50,000 (50,001 – 100,000)</td><td>$1.83</td></tr>
+            <tr><td>Tier 4</td><td>Next 100,000 (100,001 – 200,000)</td><td>$1.50</td></tr>
+            <tr><td>Tier 5</td><td>Next 100,000 (200,001 – 300,000)</td><td>$1.25</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- 10 — NEXT STEPS -->
-  <section class="chapter light" id="next" data-index="10">
+  <!-- 10 — ADD-ONS -->
+  <section class="chapter light" id="addons" data-index="10">
+    <div class="chapter-head">
+      <span class="kicker">Add-ons</span>
+      <h2 class="section-title">Own the platform &amp; harden it for scale</h2>
+      <p class="lede">Optional layers that put your brand on Wellx and meet enterprise security needs.</p>
+    </div>
+
+    <div class="scale-grid light-grid">
+      <article class="scale-card reveal">
+        <span class="opt"><svg class="ico"><use href="#ic-layers"/></svg> White-label</span>
+        <h4>Broker White-label App</h4>
+        <div class="scale-price">$50,000<span>one-time</span></div>
+        <ul class="dash">
+          <li>Full branded app under your identity</li>
+          <li>Manage your entire book of business</li>
+          <li>Portfolio-wide analytics &amp; HR dashboards</li>
+          <li>One app — all clients unified</li>
+        </ul>
+      </article>
+      <article class="scale-card reveal" data-d="1">
+        <span class="opt"><svg class="ico"><use href="#ic-layers"/></svg> White-label</span>
+        <h4>Client Sub-White-label</h4>
+        <div class="scale-price">$3,000<span>one-time / client</span></div>
+        <ul class="dash">
+          <li>Client-branded app on your broker platform</li>
+          <li>Each employer gets their own branded experience</li>
+          <li>Subsidised cost — passed on or absorbed</li>
+          <li>Deepens client stickiness &amp; retention</li>
+        </ul>
+      </article>
+      <article class="scale-card reveal" data-d="2">
+        <span class="opt"><svg class="ico"><use href="#ic-shield"/></svg> Infrastructure</span>
+        <h4>Ring-Fenced Cloud</h4>
+        <div class="scale-price">$100,000<span>per year</span></div>
+        <ul class="dash">
+          <li>Dedicated infrastructure — fully isolated</li>
+          <li>Data sovereignty &amp; compliance-grade separation</li>
+          <li>Max security for regulated industries</li>
+          <li>SLA-backed enterprise-grade uptime</li>
+        </ul>
+      </article>
+    </div>
+
+    <p class="foot-note"><span>One-time &amp; annual.</span> White-label fees are one-time; Ring-Fenced Cloud is billed annually.</p>
+  </section>
+
+  <!-- 11 — NEXT STEPS -->
+  <section class="chapter light" id="next" data-index="11">
     <div class="chapter-head">
       <span class="kicker">Next Steps</span>
       <h2 class="section-title">How we move forward</h2>
@@ -508,8 +501,8 @@
     </ol>
   </section>
 
-  <!-- 11 — CONTACT -->
-  <section class="chapter dark contact" id="contact" data-index="11">
+  <!-- 12 — CONTACT -->
+  <section class="chapter dark contact" id="contact" data-index="12">
     <div class="cover-glow"></div>
     <div class="contact-inner">
       <span class="kicker light">Let's build the case study together</span>
@@ -549,7 +542,7 @@
 <!-- Chapter controls -->
 <div class="controls">
   <button class="ctrl" id="prevBtn" aria-label="Previous chapter">←</button>
-  <span class="ctrl-count"><b id="curNo">00</b> / 11</span>
+  <span class="ctrl-count"><b id="curNo">00</b> / 12</span>
   <button class="ctrl" id="nextBtn" aria-label="Next chapter">→</button>
 </div>
 
