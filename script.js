@@ -21,6 +21,10 @@
     index = Math.max(0, Math.min(total - 1, index));
     current = index;
 
+    // Header logo adapts to the chapter background (white AIMS on dark)
+    document.body.classList.toggle('chapter-dark',
+      chapters[index].matches('.dark, .cover, .contact'));
+
     if (isMobile()) {
       chapters[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
