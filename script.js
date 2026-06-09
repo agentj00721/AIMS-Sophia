@@ -25,8 +25,7 @@
       chapters[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       chapters.forEach((c, i) => c.classList.toggle('active', i === index));
-      const deck = document.getElementById('deck');
-      if (deck) deck.scrollTop = 0;
+      chapters[index].scrollTop = 0; // always enter a chapter at the top
     }
 
     navLinks.forEach((a, i) => a.classList.toggle('current', i === index));
@@ -41,6 +40,8 @@
       history.replaceState(null, '', '#' + idOf(index));
     }
     closeRail();
+    requestAnimationFrame(updateScrollCue);
+    setTimeout(updateScrollCue, 660);
   }
 
   // ---- Navigation events ----
@@ -66,20 +67,24 @@
     else if (e.key === 'End') { go(total - 1); }
   });
 
-  // ---- Wheel paging (desktop) ----
-  let wheelLock = false;
-  document.getElementById('deck').addEventListener('wheel', e => {
-    if (isMobile()) return;
+  // Note: mouse-wheel does NOT change chapters — it scrolls within a chapter
+  // when content overflows. Chapter changes happen only via the nav rail,
+  // arrow keys, the prev/next controls, or the on-page buttons. This keeps
+  // navigation predictable (no accidental jumps while reading).
+
+  // ---- Scroll-for-more cue ----
+  const scrollCue = document.getElementById('scrollCue');
+  function updateScrollCue() {
+    if (!scrollCue) return;
+    if (isMobile()) { scrollCue.classList.remove('show'); return; }
     const ch = chapters[current];
-    const atTop = ch.scrollTop <= 2;
-    const atBottom = ch.scrollTop + ch.clientHeight >= ch.scrollHeight - 2;
-    if ((e.deltaY > 0 && !atBottom) || (e.deltaY < 0 && !atTop)) return; // let inner scroll
-    if (wheelLock) return;
-    if (Math.abs(e.deltaY) < 18) return;
-    wheelLock = true;
-    if (e.deltaY > 0) go(current + 1); else go(current - 1);
-    setTimeout(() => { wheelLock = false; }, 850);
-  }, { passive: true });
+    const overflows = ch.scrollHeight - ch.clientHeight > 16;
+    const nearTop = ch.scrollTop < 48;
+    scrollCue.classList.toggle('show', overflows && nearTop);
+  }
+  chapters.forEach(c => c.addEventListener('scroll', () => {
+    if (c === chapters[current]) updateScrollCue();
+  }, { passive: true }));
 
   // ---- Mobile rail ----
   const rail = document.getElementById('rail');
@@ -221,8 +226,11 @@
 
   // Re-evaluate layout on resize between mobile/desktop
   let lastMobile = isMobile();
+  let resizeT;
   window.addEventListener('resize', () => {
     const m = isMobile();
     if (m !== lastMobile) { lastMobile = m; go(current, false); }
+    clearTimeout(resizeT);
+    resizeT = setTimeout(updateScrollCue, 150);
   });
 })();

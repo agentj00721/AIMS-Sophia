@@ -80,29 +80,33 @@
       <h2 class="section-title">We build the technology layer that turns wellbeing into <span class="grad-text">outcomes</span> — and insurance into value.</h2>
       <p class="lede">Wellx is a configurable, API-first platform operating across three connected layers — employee wellbeing and engagement, AI-powered health technology, and insurance infrastructure. We align members, employers, insurers and brokers around a single daily experience.</p>
     </div>
-    <div class="who-grid">
-      <article class="who-card" tabindex="0">
-        <span class="who-tag">Member</span>
-        <h3>Earn rewards for healthy habits</h3>
-        <p>Build lasting routines with daily challenges, mood tracking and personalised goals.</p>
-      </article>
-      <article class="who-card" tabindex="0">
-        <span class="who-tag">Employers</span>
-        <h3>Reduce absenteeism, retain talent</h3>
-        <p>Get real-time workforce health visibility with a platform employees actually use.</p>
-      </article>
-      <article class="who-card" tabindex="0">
-        <span class="who-tag">Insurers</span>
-        <h3>Reduce claims through prevention</h3>
-        <p>Connect your policy to daily member behaviour and measure the impact.</p>
-      </article>
-      <article class="who-card" tabindex="0">
-        <span class="who-tag">Brokers</span>
-        <h3>Win &amp; retain clients faster</h3>
-        <p>Offer a differentiated benefits solution backed by measurable engagement data.</p>
-      </article>
+    <div class="who-layout">
+      <div class="who-grid">
+        <article class="who-card" tabindex="0">
+          <span class="who-tag">Member</span>
+          <h3>Earn rewards for healthy habits</h3>
+          <p>Build lasting routines with daily challenges, mood tracking and personalised goals.</p>
+        </article>
+        <article class="who-card" tabindex="0">
+          <span class="who-tag">Employers</span>
+          <h3>Reduce absenteeism, retain talent</h3>
+          <p>Get real-time workforce health visibility with a platform employees actually use.</p>
+        </article>
+        <article class="who-card" tabindex="0">
+          <span class="who-tag">Insurers</span>
+          <h3>Reduce claims through prevention</h3>
+          <p>Connect your policy to daily member behaviour and measure the impact.</p>
+        </article>
+        <article class="who-card" tabindex="0">
+          <span class="who-tag">Brokers</span>
+          <h3>Win &amp; retain clients faster</h3>
+          <p>Offer a differentiated benefits solution backed by measurable engagement data.</p>
+        </article>
+      </div>
+      <div class="who-visual reveal" data-d="2">
+        <img src="assets/img/phone-home.png" alt="Wellx member app" class="who-phone" />
+      </div>
     </div>
-    <img src="assets/img/phone-home.png" alt="Wellx member app" class="who-phone reveal" />
   </section>
 
   <!-- 02 — TRUSTED BY -->
@@ -306,18 +310,23 @@
           <span class="calc-blended">Blended <b id="blendedRate">$0</b> / member</span>
         </div>
       </div>
-      <input type="range" id="memberSlider" min="1000" max="300000" step="1000" value="70000" aria-label="Number of members" />
-      <div class="calc-bands" id="calcBands"></div>
-      <table class="tier-table">
-        <thead><tr><th>Tier</th><th>Purchased licenses</th><th>USD / member / year</th></tr></thead>
-        <tbody>
-          <tr><td>Tier 1</td><td>First 10,000</td><td>$30</td></tr>
-          <tr><td>Tier 2</td><td>Next 40,000 (10,001 – 50,000)</td><td>$25</td></tr>
-          <tr><td>Tier 3</td><td>Next 50,000 (50,001 – 100,000)</td><td>$22</td></tr>
-          <tr><td>Tier 4</td><td>Next 100,000 (100,001 – 200,000)</td><td>$18</td></tr>
-          <tr><td>Tier 5</td><td>Next 100,000 (200,001 – 300,000)</td><td>$15</td></tr>
-        </tbody>
-      </table>
+      <div class="calc-body">
+        <div class="calc-model">
+          <input type="range" id="memberSlider" min="1000" max="300000" step="1000" value="70000" aria-label="Number of members" />
+          <div class="calc-bands" id="calcBands"></div>
+          <p class="calc-hint">Each colour is a pricing band. Drag the slider to see how the blended rate falls as volume grows.</p>
+        </div>
+        <table class="tier-table">
+          <thead><tr><th>Tier</th><th>Purchased licenses</th><th>USD / yr</th></tr></thead>
+          <tbody>
+            <tr><td>Tier 1</td><td>First 10,000</td><td>$30</td></tr>
+            <tr><td>Tier 2</td><td>Next 40,000 (10,001 – 50,000)</td><td>$25</td></tr>
+            <tr><td>Tier 3</td><td>Next 50,000 (50,001 – 100,000)</td><td>$22</td></tr>
+            <tr><td>Tier 4</td><td>Next 100,000 (100,001 – 200,000)</td><td>$18</td></tr>
+            <tr><td>Tier 5</td><td>Next 100,000 (200,001 – 300,000)</td><td>$15</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -457,6 +466,9 @@
   </section>
 
 </main>
+
+<!-- Scroll-for-more cue (shown when the active chapter overflows) -->
+<div class="scroll-cue" id="scrollCue" aria-hidden="true"><span>Scroll for more</span><i>⌄</i></div>
 
 <!-- Chapter controls -->
 <div class="controls">
