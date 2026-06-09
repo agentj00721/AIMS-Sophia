@@ -205,12 +205,18 @@
   // ---- Initial chapter from hash ----
   const startHash = location.hash;
   const startIdx = chapters.findIndex(c => '#' + c.id === startHash);
+  const startAt = startIdx >= 0 ? startIdx : 0;
   if (!isMobile()) {
-    go(startIdx >= 0 ? startIdx : 0, false);
+    go(startAt, false);
   } else {
-    navLinks.forEach((a, i) => a.classList.toggle('current', i === 0));
+    // Mobile: keep an .active chapter assigned so a later resize to desktop
+    // always has a valid chapter to show (avoids a blank state).
+    current = startAt;
+    chapters.forEach((c, i) => c.classList.toggle('active', i === startAt));
+    navLinks.forEach((a, i) => a.classList.toggle('current', i === startAt));
+    curNo.textContent = String(startAt).padStart(2, '0');
     if (startIdx > 0) setTimeout(() => chapters[startIdx].scrollIntoView(), 60);
-    triggerCounters(chapters[0]);
+    triggerCounters(chapters[startAt]);
   }
 
   // Re-evaluate layout on resize between mobile/desktop
