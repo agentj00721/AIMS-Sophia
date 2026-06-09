@@ -563,7 +563,7 @@ ul.dash.light li{color:#c5c6e6}
   .controls{display:none}
   .scroll-cue{display:none}
   .progress-rail{display:none}
-  .who-grid,.context-cards,.platform-grid,.price-cards,.scale-grid,.fragmented,.feat-grid,.win-grid,.own-grid,.ent-grid{grid-template-columns:1fr}
+  .who-grid,.context-cards,.platform-grid,.price-cards,.price-cards.two,.scale-grid,.fragmented,.feat-grid,.win-grid,.own-grid,.ent-grid{grid-template-columns:1fr}
   .layer-feats li{font-size:11px}
   .calc-head{flex-direction:column;align-items:flex-start}
   .calc-output{text-align:left}
