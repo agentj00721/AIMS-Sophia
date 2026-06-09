@@ -246,6 +246,19 @@ ul.dash.light li{color:#c5c6e6}
 .plat-card h3{font-family:Raleway;font-weight:800;font-size:16.5px;color:#16121f;margin-bottom:10px}
 
 /* ============================================================
+   07 — Why AIMS Wins (broker value)
+   ============================================================ */
+#whyaims{display:block}
+.win-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px;max-width:1000px}
+.win-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:24px 26px;transition:.35s var(--ease);position:relative;overflow:hidden}
+.win-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--grad-spectrum);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
+.win-card:hover{transform:translateY(-5px);border-color:rgba(180,150,255,.4);background:rgba(255,255,255,.08)}
+.win-card:hover::before{transform:scaleY(1)}
+.win-ico{font-size:22px;width:48px;height:48px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,rgba(251,155,53,.18),rgba(132,49,203,.24));margin-bottom:14px}
+.win-card h3{font-family:Raleway;font-weight:800;font-size:19px;color:#fff;margin-bottom:8px}
+.win-card p{font-size:13.6px;line-height:1.55;color:#bcbce4}
+
+/* ============================================================
    06 — What HR gains
    ============================================================ */
 .hr-layout{display:grid;grid-template-columns:.95fr 1.05fr;gap:50px;align-items:center;max-width:1180px;margin:0 auto;width:100%}
@@ -425,7 +438,7 @@ ul.dash.light li{color:#c5c6e6}
   .controls{display:none}
   .scroll-cue{display:none}
   .progress-rail{display:none}
-  .who-grid,.context-cards,.platform-grid,.price-cards,.scale-grid,.fragmented,.feat-grid{grid-template-columns:1fr}
+  .who-grid,.context-cards,.platform-grid,.price-cards,.scale-grid,.fragmented,.feat-grid,.win-grid{grid-template-columns:1fr}
   .calc-head{flex-direction:column;align-items:flex-start}
   .calc-output{text-align:left}
 }
