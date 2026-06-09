@@ -218,8 +218,17 @@ body.chapter-dark .brand-aims-white{display:inline-block}
    02 — Trusted by
    ============================================================ */
 #trusted{align-items:center;text-align:center}
-.logo-wall{max-width:980px;margin:36px auto 0;background:linear-gradient(180deg,#f4f4f8,#ebebf0);border-radius:22px;padding:26px;border:1px solid rgba(255,255,255,.08)}
-.logo-wall img{border-radius:10px}
+.logo-wall{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;max-width:1040px;margin:32px auto 0}
+.logo-tile{background:#fff;border-radius:14px;height:92px;display:flex;align-items:center;justify-content:center;padding:0 30px;box-shadow:0 16px 38px -24px rgba(20,10,40,.7);transition:transform .3s var(--ease)}
+.logo-tile:hover{transform:translateY(-4px)}
+.logo-tile img{height:38px;width:auto;max-width:210px;display:block;object-fit:contain}
+
+/* Recurring "trusted by" strip (Next Steps) */
+.trust-strip{margin-top:44px;text-align:center;max-width:900px}
+.trust-strip-label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9a9ab0;font-weight:600;margin-bottom:20px}
+.trust-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px 34px}
+.trust-logos img{height:25px;width:auto;max-width:130px;object-fit:contain;opacity:.78;filter:grayscale(.2);transition:.3s var(--ease)}
+.trust-logos img:hover{opacity:1;filter:none}
 .stat-row{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:40px}
 .stat{min-width:150px}
 .stat b{display:block;font-family:Raleway;font-weight:900;font-size:clamp(30px,4vw,50px);background:var(--grad-spectrum);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}

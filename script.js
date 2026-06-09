@@ -285,6 +285,11 @@
       const { jsPDF } = window.jspdf;
       document.body.classList.add('exporting');
       closeRail();
+      // Make sure animated stat counters show their final value in the PDF
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const t = +el.dataset.count, suf = el.dataset.suffix || '';
+        el.textContent = (t >= 1000 ? Math.round(t).toLocaleString('en-US') : t) + suf;
+      });
       // Uniform 16:9 slide pages — each chapter is scaled to FIT (contain)
       // and centred, with the letterbox filled to match the chapter edge so
       // it reads as full-bleed. No clipping, consistent page size throughout.
