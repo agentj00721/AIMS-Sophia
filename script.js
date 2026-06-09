@@ -178,18 +178,27 @@
       annualTotal.textContent = '$' + total.toLocaleString('en-US');
       blendedRate.textContent = '$' + (n ? (total / n) : 0).toFixed(2);
 
-      // band bar (width proportional to members, scaled to MAX)
+      // Proportional colour bar — pure colour blocks, so no label can ever
+      // be clipped while the slider moves. The numbers live in the legend
+      // below, which wraps and is always fully visible at any width.
       bandsEl.innerHTML = '';
+      const legendEl = document.getElementById('calcLegend');
+      if (legendEl) legendEl.innerHTML = '';
       segments.forEach(s => {
         const div = document.createElement('div');
         div.className = 'band';
         div.style.background = s.color;
         div.style.flexBasis = (s.members / MAX * 100) + '%';
-        if (s.members / MAX > 0.05) {
-          div.innerHTML = '<span>' + s.members.toLocaleString('en-US') + ' @ $' + s.rate + '</span>';
-        }
         div.title = s.name + ' · ' + s.members.toLocaleString('en-US') + ' members @ $' + s.rate;
         bandsEl.appendChild(div);
+        if (legendEl) {
+          const chip = document.createElement('div');
+          chip.className = 'legend-chip';
+          chip.innerHTML = '<i style="background:' + s.color + '"></i>' +
+            '<b>' + s.members.toLocaleString('en-US') + '</b> &times; $' + s.rate +
+            ' <em>= $' + (s.members * s.rate).toLocaleString('en-US') + '</em>';
+          legendEl.appendChild(chip);
+        }
       });
 
       const activeNames = segments.map(s => s.name);
@@ -237,4 +246,82 @@
     clearTimeout(resizeT);
     resizeT = setTimeout(updateScrollCue, 150);
   });
+
+  // ============================================================
+  //  PDF export — captures the branded design and builds a
+  //  paginated, footer-stamped PDF for executive sharing.
+  // ============================================================
+  const pdfBtn = document.getElementById('pdfBtn');
+  const pdfOverlay = document.getElementById('pdfOverlay');
+  const pdfProgress = document.getElementById('pdfProgress');
+
+  function loadScript(src) {
+    return new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src; s.onload = res; s.onerror = () => rej(new Error('Failed to load ' + src));
+      document.head.appendChild(s);
+    });
+  }
+  let libsReady = false;
+  async function ensureLibs() {
+    if (libsReady) return;
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    libsReady = true;
+  }
+  // setTimeout (not rAF) so the export keeps progressing even if the tab
+  // is backgrounded mid-render (rAF is paused in hidden tabs).
+  const settle = () => new Promise(r => setTimeout(r, 45));
+
+  async function exportPDF() {
+    if (pdfBtn.disabled) return;
+    pdfBtn.disabled = true;
+    pdfOverlay.classList.add('show');
+    try {
+      if (pdfProgress) pdfProgress.textContent = 'Loading…';
+      await ensureLibs();
+      const { jsPDF } = window.jspdf;
+      document.body.classList.add('exporting');
+      closeRail();
+      let pdf = null;
+      for (let i = 0; i < chapters.length; i++) {
+        if (pdfProgress) pdfProgress.textContent = 'Rendering page ' + (i + 1) + ' of ' + chapters.length;
+        const ch = chapters[i];
+        ch.classList.add('pdf-cap');
+        await settle();
+        const canvas = await window.html2canvas(ch, {
+          scale: 2, backgroundColor: '#0a0a12', useCORS: true, logging: false,
+          windowWidth: 1180, scrollX: 0, scrollY: 0
+        });
+        ch.classList.remove('pdf-cap');
+        const iw = canvas.width, ih = canvas.height;
+        const ft = Math.round(iw * 0.045);          // footer band height
+        const pageW = iw, pageH = ih + ft;
+        const orient = pageW >= pageH ? 'landscape' : 'portrait';
+        if (!pdf) pdf = new jsPDF({ orientation: orient, unit: 'px', format: [pageW, pageH], compress: true });
+        else pdf.addPage([pageW, pageH], orient);
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, iw, ih);
+        pdf.setFillColor(10, 10, 18);
+        pdf.rect(0, ih, pageW, ft, 'F');
+        pdf.setTextColor(196, 196, 224);
+        pdf.setFont('helvetica', 'normal');
+        pdf.setFontSize(Math.round(ft * 0.34));
+        pdf.text('AIMS Gulf   ×   Wellx  —  Partnership Proposal', ft * 0.7, ih + ft * 0.63);
+        pdf.text('Page ' + (i + 1) + ' / ' + chapters.length, pageW - ft * 0.7, ih + ft * 0.63, { align: 'right' });
+      }
+      document.body.classList.remove('exporting');
+      if (pdfProgress) pdfProgress.textContent = 'Saving…';
+      pdf.save('AIMS-Gulf-x-Wellx-Proposal.pdf');
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      alert('Sorry — the PDF could not be generated. Please check your connection and try again from a desktop browser.');
+    } finally {
+      document.body.classList.remove('exporting');
+      document.querySelectorAll('.pdf-cap').forEach(e => e.classList.remove('pdf-cap'));
+      pdfOverlay.classList.remove('show');
+      pdfBtn.disabled = false;
+      go(current, false); // restore the active chapter cleanly
+    }
+  }
+  if (pdfBtn) pdfBtn.addEventListener('click', exportPDF);
 })();

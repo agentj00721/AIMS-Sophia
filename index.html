@@ -13,6 +13,26 @@
 </head>
 <body>
 
+<!-- Icon sprite (premium gradient line icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="wx-grad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#fb9b35"/><stop offset=".25" stop-color="#f1517b"/>
+      <stop offset=".5" stop-color="#b43082"/><stop offset=".75" stop-color="#8431cb"/>
+      <stop offset="1" stop-color="#35c5fc"/>
+    </linearGradient>
+  </defs>
+  <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4"/></symbol>
+  <symbol id="ic-chart" viewBox="0 0 24 24"><polyline points="3 16 9 10 13 13 21 5"/><polyline points="16 5 21 5 21 10"/><line x1="3" y1="20" x2="21" y2="20"/></symbol>
+  <symbol id="ic-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8"/><line x1="12" y1="8" x2="12" y2="20"/><path d="M12 8S11 3 8.2 3 5.6 6 8.2 6H12"/><path d="M12 8s1-5 3.8-5 2.6 3 0 3H12"/></symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6"/><line x1="16" y1="2.5" x2="16" y2="6"/></symbol>
+  <symbol id="ic-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10l-5.6 1.4L12 17l-1.9-5.6L4.5 10l5.6-1.4z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.2c0 4.7-3.2 7.9-7.5 9.3-4.3-1.4-7.5-4.6-7.5-9.3V6z"/><path d="M9 12l2 2 4-4.2"/></symbol>
+  <symbol id="ic-renew" viewBox="0 0 24 24"><path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1"/><polyline points="20.5 4 20.5 9 15.5 9"/></symbol>
+  <symbol id="ic-trend" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="15"/><polyline points="7 10 12 15 17 10"/><path d="M5 20h14"/></symbol>
+</svg>
+
 <!-- Progress bar -->
 <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
 
@@ -21,10 +41,16 @@
   <a class="brand" href="#cover" data-nav>
     <img src="assets/img/wellx-logo.png" alt="Wellx" class="brand-logo" />
   </a>
-  <div class="topbar-meta">
-    <span class="topbar-x">×</span>
-    <img src="assets/img/aims-gulf-logo.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-color" />
-    <img src="assets/img/aims-gulf-white.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-white" />
+  <div class="topbar-right">
+    <button class="pdf-btn" id="pdfBtn" aria-label="Download proposal as PDF">
+      <svg class="ico"><use href="#ic-download"/></svg>
+      <span class="pdf-btn-label">Download PDF</span>
+    </button>
+    <div class="topbar-meta">
+      <span class="topbar-x">×</span>
+      <img src="assets/img/aims-gulf-logo.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-color" />
+      <img src="assets/img/aims-gulf-white.png" alt="AIMS Gulf Insurance Brokers" class="brand-aims brand-aims-white" />
+    </div>
   </div>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
     <span></span><span></span><span></span>
@@ -198,9 +224,10 @@
       <span class="kicker">The Platform</span>
       <h2 class="section-title">One platform. Every layer of employee health.</h2>
     </div>
+    <div class="platform-layout">
     <div class="platform-grid">
       <article class="plat-card reveal">
-        <div class="plat-ico">🎯</div>
+        <div class="plat-ico"><svg class="ico"><use href="#ic-target"/></svg></div>
         <h3>Gamification &amp; Challenges</h3>
         <ul class="dash">
           <li>Challenges branded to each client</li>
@@ -209,7 +236,7 @@
         </ul>
       </article>
       <article class="plat-card reveal" data-d="1">
-        <div class="plat-ico">📊</div>
+        <div class="plat-ico"><svg class="ico"><use href="#ic-chart"/></svg></div>
         <h3>Intelligence Portal</h3>
         <ul class="dash">
           <li>Real-time engagement, client by client</li>
@@ -218,7 +245,7 @@
         </ul>
       </article>
       <article class="plat-card reveal" data-d="2">
-        <div class="plat-ico">🎁</div>
+        <div class="plat-ico"><svg class="ico"><use href="#ic-gift"/></svg></div>
         <h3>Benefits &amp; Rewards</h3>
         <ul class="dash">
           <li>Coins earned for every healthy action</li>
@@ -227,7 +254,7 @@
         </ul>
       </article>
       <article class="plat-card reveal" data-d="3">
-        <div class="plat-ico">🗓️</div>
+        <div class="plat-ico"><svg class="ico"><use href="#ic-calendar"/></svg></div>
         <h3>Wellbeing Content &amp; Calendar</h3>
         <ul class="dash">
           <li>12-month structured programme</li>
@@ -235,6 +262,11 @@
           <li>No third-party tool needed</li>
         </ul>
       </article>
+    </div>
+    <div class="platform-visual reveal" data-d="2">
+      <img src="assets/img/challenge-coins.png" alt="Wellx member app — challenges and rewards" />
+      <span class="platform-cap">Live member app — challenges &amp; rewards</span>
+    </div>
     </div>
   </section>
 
@@ -267,22 +299,22 @@
     </div>
     <div class="win-grid">
       <article class="win-card reveal">
-        <div class="win-ico">🎯</div>
+        <div class="win-ico"><svg class="ico"><use href="#ic-spark"/></svg></div>
         <h3>Differentiate</h3>
         <p>Walk into every pitch with something no competing broker can put on the table.</p>
       </article>
       <article class="win-card reveal" data-d="1">
-        <div class="win-ico">🔗</div>
+        <div class="win-ico"><svg class="ico"><use href="#ic-shield"/></svg></div>
         <h3>Retain</h3>
         <p>Daily engagement makes relationships sticky. Switching brokers means taking away the app their people use every day.</p>
       </article>
       <article class="win-card reveal" data-d="2">
-        <div class="win-ico">🤝</div>
+        <div class="win-ico"><svg class="ico"><use href="#ic-renew"/></svg></div>
         <h3>Win renewals</h3>
         <p>Bring insurers real prevention and engagement data — and negotiate from strength, not price.</p>
       </article>
       <article class="win-card reveal" data-d="3">
-        <div class="win-ico">📈</div>
+        <div class="win-ico"><svg class="ico"><use href="#ic-trend"/></svg></div>
         <h3>Grow revenue</h3>
         <p>Margin on every resale, white-label your whole book, and unlock portfolio-level deals.</p>
       </article>
@@ -297,87 +329,83 @@
       <p class="lede light">For brokers ready to put their own brand on the platform and roll it across the book.</p>
     </div>
 
-    <div class="portfolio-tabs">
-      <button class="ptab active" data-tab="light">Wellx Light</button>
-      <button class="ptab" data-tab="x">X Upgrade</button>
-      <button class="ptab" data-tab="scale">Scale &amp; White-label</button>
-    </div>
+    <!-- Linear upgrade progression — fully visible, no clicks -->
+    <div class="layers">
 
-    <div class="ptab-panel active" data-panel="light">
-      <div class="pf-split">
-        <div>
-          <h3 class="pf-h">Wellx Light <span class="pill">Core features + data capture</span></h3>
-          <ul class="feat-grid">
+      <!-- Layer 1 -->
+      <article class="layer reveal">
+        <div class="layer-step"><span class="layer-no">01</span></div>
+        <div class="layer-main">
+          <span class="layer-tag">Core Platform</span>
+          <h3>Wellx Light</h3>
+          <p class="layer-desc">The core wellbeing platform and data-capture engine you deploy across the book.</p>
+          <ul class="layer-feats">
             <li>Device Connection</li><li>Health Dashboard</li><li>Health Evaluation</li>
             <li>Personal Goals</li><li>Education Hub</li><li>Mood Logging</li>
-            <li>Guided Breathwork</li><li>Discount Rewards</li><li>Insurance Section</li>
-            <li>HR Dashboard</li>
+            <li>Guided Breathwork</li><li>Discount Rewards</li><li>Insurance Section</li><li>HR Dashboard</li>
           </ul>
+          <p class="layer-outcome"><span>Outcome</span> Every client live on one branded platform — and a stream of engagement data you own.</p>
         </div>
-        <div class="pf-price">
-          <span class="pf-tag">Pricing</span>
-          <div class="pf-amount">$100,000<span>/ year</span></div>
+        <div class="layer-price">
+          <div class="layer-amount">$100,000<span>/ year</span></div>
           <p>Up to <strong>1 million licenses</strong></p>
-          <p class="pf-min">Minimum 1-year subscription</p>
+          <p class="layer-min">Minimum 1-year subscription</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <div class="ptab-panel" data-panel="x">
-      <div class="pf-split">
-        <div>
-          <h3 class="pf-h">X Upgrade <span class="pill">Advanced engagement layer</span></h3>
-          <p class="pf-sub">Add-on to Wellx Light — activates at any renewal cycle.</p>
-          <ul class="feat-grid">
+      <div class="layer-link"><svg class="ico"><use href="#ic-trend"/></svg><span>Upgrade path — switch on engagement</span></div>
+
+      <!-- Layer 2 -->
+      <article class="layer reveal">
+        <div class="layer-step"><span class="layer-no">02</span></div>
+        <div class="layer-main">
+          <span class="layer-tag">Advanced Engagement Layer</span>
+          <h3>Wellx X Upgrade</h3>
+          <p class="layer-desc">Switch on the high-engagement and clinical features at any renewal — no re-platforming.</p>
+          <ul class="layer-feats">
             <li>Everything in Wellx Light</li><li>AI Facial Scan</li><li>Care Concierge</li>
             <li>Telemedicine</li><li>Social Challenges</li><li>Mental Health Sessions (unlimited)</li>
             <li>Dedicated Account Manager</li><li>Cash Rewards</li>
           </ul>
+          <p class="layer-outcome"><span>Outcome</span> Deeper daily engagement and clinical value that makes switching brokers unthinkable.</p>
         </div>
-        <div class="pf-price">
-          <span class="pf-tag">Pricing</span>
-          <div class="pf-amount">$30<span>/ member / year</span></div>
-          <p>1-year subscription</p>
+        <div class="layer-price">
+          <div class="layer-amount">$30<span>/ member / year</span></div>
+          <p>Activates at any renewal cycle</p>
+          <p class="layer-min">1-year subscription</p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <div class="ptab-panel" data-panel="scale">
-      <div class="scale-grid">
-        <article class="scale-card">
-          <span class="opt light">Tier 1</span>
-          <h4>Broker White-label App</h4>
-          <div class="scale-price">$50,000<span>one-time</span></div>
-          <ul class="dash light">
-            <li>Full branded app under your identity</li>
-            <li>Manage your entire book of business</li>
-            <li>Portfolio-wide analytics &amp; HR dashboards</li>
-            <li>One app — all clients unified</li>
-          </ul>
-        </article>
-        <article class="scale-card">
-          <span class="opt light">Tier 2</span>
-          <h4>Client Sub-White-label</h4>
-          <div class="scale-price">$3,000<span>one-time / client</span></div>
-          <ul class="dash light">
-            <li>Client-branded app on your broker platform</li>
-            <li>Each employer gets their own branded experience</li>
-            <li>Subsidised cost — passed on or absorbed</li>
-            <li>Deepens client stickiness &amp; retention</li>
-          </ul>
-        </article>
-        <article class="scale-card">
-          <span class="opt light">Tier 3</span>
-          <h4>Ring-Fenced Cloud</h4>
-          <div class="scale-price">$100,000<span>per year</span></div>
-          <ul class="dash light">
-            <li>Dedicated infrastructure — fully isolated</li>
-            <li>Data sovereignty &amp; compliance-grade separation</li>
-            <li>Max security for regulated industries</li>
-            <li>SLA-backed enterprise-grade uptime</li>
-          </ul>
-        </article>
-      </div>
+      <div class="layer-link"><svg class="ico"><use href="#ic-shield"/></svg><span>Upgrade path — own the platform</span></div>
+
+      <!-- Layer 3 -->
+      <article class="layer layer-own reveal">
+        <div class="layer-step"><span class="layer-no">03</span></div>
+        <div class="layer-main">
+          <span class="layer-tag">Full Brand Ownership</span>
+          <h3>Broker White-label Platform</h3>
+          <p class="layer-desc">Put your own brand on the platform and run your entire book from one place.</p>
+          <div class="own-grid">
+            <div class="own-item">
+              <h4>Broker White-label App</h4>
+              <div class="own-price">$50,000 <span>one-time</span></div>
+              <p>Full branded app under your identity — your whole book, unified, with portfolio-wide analytics.</p>
+            </div>
+            <div class="own-item">
+              <h4>Client Sub-White-label</h4>
+              <div class="own-price">$3,000 <span>one-time / client</span></div>
+              <p>Each employer gets their own branded experience — passed on or absorbed to deepen stickiness.</p>
+            </div>
+            <div class="own-item">
+              <h4>Ring-Fenced Cloud</h4>
+              <div class="own-price">$100,000 <span>/ year</span></div>
+              <p>Dedicated, isolated infrastructure with data sovereignty and enterprise-grade SLAs.</p>
+            </div>
+          </div>
+          <p class="layer-outcome"><span>Outcome</span> The platform becomes yours — your brand, your data, your client relationships, locked in.</p>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -441,6 +469,7 @@
         <div class="calc-model">
           <input type="range" id="memberSlider" min="1000" max="300000" step="1000" value="70000" aria-label="Number of members" />
           <div class="calc-bands" id="calcBands"></div>
+          <div class="calc-legend" id="calcLegend"></div>
           <p class="calc-hint">Each colour is a pricing band. Drag the slider to see how the blended rate falls as volume grows.</p>
         </div>
         <table class="tier-table">
@@ -506,6 +535,13 @@
   </section>
 
 </main>
+
+<!-- PDF generation overlay -->
+<div class="pdf-overlay" id="pdfOverlay" aria-hidden="true">
+  <div class="pdf-spinner"></div>
+  <p>Preparing your proposal PDF…</p>
+  <small id="pdfProgress">Rendering pages</small>
+</div>
 
 <!-- Scroll-for-more cue (shown when the active chapter overflows) -->
 <div class="scroll-cue" id="scrollCue" aria-hidden="true"><span>Scroll for more</span><i>⌄</i></div>
