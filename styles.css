@@ -344,7 +344,7 @@ ul.dash.light li{color:#c5c6e6}
 .ent-card:nth-child(2) .ent-tag{background:linear-gradient(135deg,var(--violet),var(--sky))}
 .ent-card h3{font-family:Raleway;font-weight:800;font-size:22px;color:#fff;margin-bottom:8px}
 .ent-price{font-family:Raleway;font-weight:900;font-size:32px;background:var(--grad-spectrum);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.05}
-.ent-price span{font-family:Inter;font-size:13px;font-weight:600;color:#9a9bc6;-webkit-text-fill-color:#9a9bc6;margin-left:6px}
+.ent-price span{font-family:Inter;font-size:13px;font-weight:600;color:#9a9bc6;-webkit-text-fill-color:#9a9bc6;margin-left:6px;white-space:nowrap}
 .ent-sub{font-size:12.5px;color:#bcbce4;margin:7px 0 14px}
 .ent-sub strong{color:#fff}
 #option2 .calc{border:1px solid rgba(255,255,255,.1)}
@@ -559,8 +559,12 @@ ul.dash.light li{color:#c5c6e6}
   .topbar-right{gap:10px}
   .pdf-btn-label{display:none}
   .pdf-btn{padding:8px 11px}
-  .menu-toggle{display:flex;flex-direction:column;gap:5px;width:42px;height:42px;align-items:center;justify-content:center;background:none;border:none;cursor:pointer}
-  .menu-toggle span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+  /* Declutter the mobile header: drop the AIMS co-brand (it's prominent on
+     the cover + contact) and make the menu a clear, tappable button. */
+  .topbar-meta{display:none}
+  .menu-toggle{display:flex;flex-direction:column;gap:5px;width:44px;height:44px;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:11px;cursor:pointer}
+  .menu-toggle span{width:20px;height:2px;background:#fff;border-radius:2px;transition:.3s}
   .rail{transform:translateX(-100%);transition:transform .4s var(--ease);width:280px}
   .rail.open{transform:none}
   .rail-scrim{display:block;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:57;opacity:0;visibility:hidden;transition:.3s}
@@ -572,6 +576,11 @@ ul.dash.light li{color:#c5c6e6}
   .controls{display:none}
   .scroll-cue{display:none}
   .progress-rail{display:none}
+  .scroll-hint{display:none}
+  /* Compact 2-up logo wall instead of one huge tile per row */
+  .logo-wall{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:none;margin-top:24px}
+  .logo-tile{height:72px;padding:0 14px;width:auto}
+  .logo-tile img{height:27px;max-width:100%}
   .who-grid,.context-cards,.platform-grid,.price-cards,.price-cards.two,.scale-grid,.fragmented,.feat-grid,.win-grid,.own-grid,.ent-grid{grid-template-columns:1fr}
   .layer-feats li{font-size:11px}
   .calc-head{flex-direction:column;align-items:flex-start}
